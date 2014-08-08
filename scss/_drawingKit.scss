@@ -7,20 +7,19 @@
   バグ
       透けて見えることがある
       ⇒その上のレイヤをbackground:whiteで隠す。
+  使い方
+      クリック時にContainer-isDrawingを付けたり外したりする。
   どんどん改良して下さい。
 */
 // 変数
-$DK_backColor: ;
-$DK_zIndex: ;
+$DK_zIndex: $Drawer_zIndex;
 
 
 // 横から出てくる部分
 .Drawer {
   z-index: $DK_zIndex;
-  width: 80%;
-  background-color: $DK_backColor;
+  width: 70%;
   color: white;
-  text-align: center;
   position: fixed;
   overflow: scroll;
   -webkit-overflow-scrolling: touch; // 慣性スクロール
@@ -28,13 +27,17 @@ $DK_zIndex: ;
   bottom: 0;
 }
 .Drawer_header {
-  height: 40px;
+  background-color: #313532;
+  padding: .8rem 0;
+  padding-left: 2rem;
 }
 .Drawer_items {
   list-style: none;
 }
 .Drawer_item {
-  line-height: 4;
+  padding: 1.2rem 0;
+  padding-left: 3rem;
+  text-overflow: ellipsis;
 }
 
 // Container Drawing //
@@ -50,7 +53,7 @@ $DK_zIndex: ;
 }
 
 .Container-isDrawing { //クリック時に付け外しする
-  -webkit-transform: translateX(80%);
-  transform: translateX(80%);
+  -webkit-transform: translateX(70%);
+  transform: translateX(70%);
   overflow-y: hidden;
 }
