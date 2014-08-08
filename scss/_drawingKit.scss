@@ -1,0 +1,56 @@
+@charset "UTF-8";
+/*
+ DrawerKit ver.1.0.0
+  部品
+  　　・左(裏に隠れてる。動かない).Drawer
+    　・右(本体。右にスライドする).Container
+  バグ
+      透けて見えることがある
+      ⇒その上のレイヤをbackground:whiteで隠す。
+  どんどん改良して下さい。
+*/
+// 変数
+$DK_backColor: ;
+$DK_zIndex: ;
+
+
+// 横から出てくる部分
+.Drawer {
+  z-index: $DK_zIndex;
+  width: 80%;
+  background-color: $DK_backColor;
+  color: white;
+  text-align: center;
+  position: fixed;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch; // 慣性スクロール
+  top: 0;
+  bottom: 0;
+}
+.Drawer_header {
+  height: 40px;
+}
+.Drawer_items {
+  list-style: none;
+}
+.Drawer_item {
+  line-height: 4;
+}
+
+// Container Drawing //
+.Container {
+  position: absolute; //【臨時】コンテナのレイヤー化　後ろのDrawerが透けて見えるから対策
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: white;
+  -webkit-transition: 300ms ease-in-out;
+  transition:300ms ease-in-out;
+}
+
+.Container-isDrawing { //クリック時に付け外しする
+  -webkit-transform: translateX(80%);
+  transform: translateX(80%);
+  overflow-y: hidden;
+}
