@@ -1,0 +1,11 @@
+{
+  "name": "modular",
+  "version": "1.0.0",
+  "description": "This is a place to put something reusable.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tomokatsu Iguchi",
+  "license": "ISC"
+}
