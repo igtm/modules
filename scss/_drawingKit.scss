@@ -7,8 +7,9 @@
   バグ
       透けて見えることがある
       ⇒その上のレイヤをbackground:whiteで隠す。
-  使い方
+  js実装
       クリック時にContainer-isDrawingを付けたり外したりする。
+      Container上にマスクを表示。マスクをタップでcloseにする。
   どんどん改良して下さい。
 */
 // 変数
@@ -26,7 +27,7 @@ $DK_zIndex: $Drawer_zIndex;
   top: 0;
   bottom: 0;
 }
-.Drawer_header {
+.Drawer_title {
   background-color: #313532;
   padding: .8rem 0;
   padding-left: 2rem;
@@ -56,4 +57,16 @@ $DK_zIndex: $Drawer_zIndex;
   -webkit-transform: translateX(70%);
   transform: translateX(70%);
   overflow-y: hidden;
+}
+
+.Container_mask {
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.Container_mask-isHidden { //初期。付け外しする
+  display: none;
 }
