@@ -1,0 +1,101 @@
+@charset "UTF-8";
+/*
+ Module_DrawingLeft ver.1.1.0
+  説明
+    左からメニュー画面をアニメーション付きで表示させる
+  部品
+  　　・.Drawer(左裏に隠れてる。動かない)
+        - Drawer_title
+        - Drawer_items
+        - Drawer_item
+        - Drawer_item-isChecked
+    　・.Container (本体。右にスライドする)
+        - Container-isDrawing
+        - Container_mask
+        - Container_mask-isHidden
+  使い方
+     1. メニュー表示時:Container-isDrawingを付け、.Container_mask_isHiddenと.Drawer-isHiddenを外す。
+     2. メニュー隠す時:Container-isDrawingを外し、.Container_mask_isHiddenと.Drawer-isHidden($M_drawTransTime秒後に)を外す。
+  バグ
+      透けて見えることがある
+      ⇒その上のレイヤ(Container)をbackground:whiteで隠す。
+      スクロールがおかしくなる
+      ⇒Drawerが見えてない時は.Drawer-isHiddenをつけて消す。
+
+
+  スクロール関連が課題です。どんどん改良して下さい。
+*/
+// 変数
+$M_drawerZIndex: -1;
+$M_drawerBC: #383838;
+$M_ContainerBC: #ECEEF1;
+$M_itemCheckedColor: #F58E7E;
+$M_font: serif;
+$M_drawTransTime: 200ms;
+$M_drawTransDistance: 70%;
+
+
+// 横から出てくる部分
+.Drawer {
+  z-index: $M_drawerZIndex;
+  background-color: $M_drawerBC;
+  font-family: $M_font;
+  width: $M_drawTransDistance;
+  color: white;
+  position: fixed; // 【臨時対策】 iScroll等を使えるなら、いらない。
+  -webkit-overflow-scrolling: touch; // 慣性スクロール
+  top: 0;
+  bottom: 0;
+}
+.Drawer-isHidden { // 初期付ける。【臨時対策】.Drawerがfixedの時はsetTimeOutで、$M_drawTransTime秒後にaddClassしてあげて消すことでfixedが悪さをしなくなる。
+  display: none;
+}
+.Drawer_title {
+  padding: .8rem 0;
+  padding-left: 2rem;
+}
+.Drawer_items {
+  list-style: none;
+  margin: 0;
+}
+.Drawer_item {
+  padding: 1.2rem 0;
+  padding-left: 3rem;
+  text-overflow: ellipsis;
+}
+.Drawer_item-isChecked {
+  background: $M_itemCheckedColor;
+}
+
+// Container Drawing //
+.Container {
+  position: absolute; //【臨時】コンテナのレイヤー化　後ろのDrawerが透けて見えるから対策
+  bottom: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: $M_ContainerBC;
+  -webkit-transition: $M_drawTransTime ease-in-out;
+  transition: $M_drawTransTime ease-in-out;
+}
+
+.Container-isDrawing { //クリック時に付け外しする
+  -webkit-transform: translateX($M_drawTransDistance);
+  transform: translateX($M_drawTransDistance);
+  overflow-y: hidden;
+  position: fixed;
+}
+
+.Container_mask {
+  z-index: 1000;
+  position: absolute;
+  top: 3.5rem;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+.Container_mask-isHidden { //初期付ける。付け外しする
+  display: none;
+}
+
+/*   自由記述（自分のプロジェクトに合わせて記述） */
