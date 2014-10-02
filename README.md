@@ -5,9 +5,8 @@
 - js
 - scss
 - html
-- php
-等
----
+- phpなど
+
 # 決まり事
 ## scss
 - 全てclass指定（idは使わない）
@@ -18,7 +17,7 @@
     2. B_E-Mと２種類のバーをつかって表現する。アンダーバーの後はelement。ハイフンの後はmodify。(バーは２つ重ねない)
     3. elementは2階層以下でもあいだの階層は書かない。ex)Block_elementA_elementB => Block_elementB）
     4. jsで後から付けるmodifyの場合、prefixとして is を付ける。ex) -isMoving, -isHidden
----
+
 # コメントの書き方（コピペして使って下さい）
 /*
     [モジュラー名]　ver.x.x (もっといいバージョンの付け方とかあればそれで)
@@ -46,5 +45,3 @@ var xxxxx = ; // デフォルト値
 モジュール共通部分
 
 /* 自由記述（自分のプロジェクトに合わせて記述。） */
-
----
